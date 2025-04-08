@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h2 Edit Word
+  form(action=`/edit/${word.id}`, method="POST")
+    label(for="word") Word:
+    input(type="text", name="word", value=word.word, required)
+    br
+    label(for="meaning") Meaning:
+    input(type="text", name="meaning", value=word.meaning, required)
+    br
+    button(type="submit") Update

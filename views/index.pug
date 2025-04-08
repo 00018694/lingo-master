@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h2 Vocabulary List
+  if vocabList.length
+    ul
+      each item in vocabList
+        li
+          b #{item.word}: 
+          | #{item.meaning}
+          a(href=`/edit/${item.id}`) [Edit]
+  else
+    p No words added yet!
