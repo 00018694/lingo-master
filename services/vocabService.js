@@ -31,4 +31,50 @@ let data = [
     getAll,
     // other functions...
   };
-   
+// services/vocabService.js
+let vocabList = [];
+
+function getAll() {
+  return vocabList;
+}
+
+function getById(id) {
+  return vocabList.find(item => item.id === id);
+}
+
+function create(word, meaning, example) {
+  const newItem = {
+    id: Date.now().toString(),
+    word,
+    meaning,
+    example
+  };
+  vocabList.push(newItem);
+  return newItem;
+}
+
+function update(id, updatedItem) {
+  const index = vocabList.findIndex(item => item.id === id);
+  if (index !== -1) {
+    vocabList[index] = { id, ...updatedItem };
+    return true;
+  }
+  return false;
+}
+
+function remove(id) {
+  const index = vocabList.findIndex(item => item.id === id);
+  if (index !== -1) {
+    vocabList.splice(index, 1);
+    return true;
+  }
+  return false;
+}
+
+module.exports = {
+  getAll,
+  getById,
+  create,
+  update,
+  remove
+};

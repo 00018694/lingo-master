@@ -14,3 +14,8 @@ router.get('/flashcards', async (req, res) => {
     res.render('flashcards', { vocabs });
   });
   router.get('/random', vocabController.randomWord);
+  router.post('/delete/:id', async (req, res) => {
+    await Vocab.findByIdAndDelete(req.params.id);
+    res.redirect('/');
+  });
+  

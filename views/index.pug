@@ -13,3 +13,9 @@ block content
       br
       a(href=`/edit/${word._id}`) Edit |
       a(href=`/delete/${word._id}`) Delete
+each word in vocab
+  .vocab-item
+    strong= word.word
+    p= word.meaning
+    form(action=`/delete/${word._id}`, method='POST', style='display:inline;')
+      button(type='submit') Delete
