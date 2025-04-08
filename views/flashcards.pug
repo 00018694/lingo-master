@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Flashcards
+
+  div#flashcard
+    p#word
+    p#translation
+
+  button(onclick="nextCard()") Next
+
+  script(src="/javascripts/flashcards.js")

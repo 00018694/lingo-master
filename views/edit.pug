@@ -10,3 +10,16 @@ block content
     input(type="text", name="meaning", value=word.meaning, required)
     br
     button(type="submit") Update
+extends layout
+
+block content
+  h1 Edit Word
+
+  form(action=`/edit/${vocab._id}` method="POST")
+    input(type="text" name="word" value=vocab.word)
+    input(type="text" name="translation" value=vocab.translation)
+    select(name="category")
+      option(value="noun" selected=vocab.category=="noun") Noun
+      option(value="verb" selected=vocab.category=="verb") Verb
+      option(value="adjective" selected=vocab.category=="adjective") Adjective
+    button(type="submit") Save

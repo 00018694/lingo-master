@@ -18,4 +18,17 @@ let data = [
       data[index] = { id: Number(id), ...updated };
     }
   };
+  const Vocab = require('../models/vocab');
+
+  async function getAll(search = '') {
+    const query = search
+      ? { word: { $regex: new RegExp(search, 'i') } }
+      : {};
+    return await Vocab.find(query);
+  }
   
+  module.exports = {
+    getAll,
+    // other functions...
+  };
+   

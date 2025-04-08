@@ -1,13 +1,18 @@
 extends layout
 
 block content
-  h2 Vocabulary List
-  if vocabList.length
-    ul
-      each item in vocabList
-        li
-          b #{item.word}: 
-          | #{item.meaning}
-          a(href=`/edit/${item.id}`) [Edit]
-  else
-    p No words added yet!
+  h1 Vocabulary List
+
+  form(action="/" method="GET")
+    input(type="text" name="search" placeholder="Search words..." value=searchQuery)
+    button(type="submit") Search
+
+  a(href="/create") Add New Word
+
+  ul.word-list
+    each vocab in vocabs
+      li
+        span= vocab.word + " - " + vocab.translation + " (" + vocab.category + ")"
+        a(href=`/edit/${vocab._id}`) Edit
+        form(action=`/delete/${vocab._id}` method="POST")
+          button(type="submit") Delete
