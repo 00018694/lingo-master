@@ -2,17 +2,14 @@ extends layout
 
 block content
   h1 Vocabulary List
-
-  form(action="/" method="GET")
-    input(type="text" name="search" placeholder="Search words..." value=searchQuery)
-    button(type="submit") Search
-
   a(href="/create") Add New Word
+  a(href="/random", style="margin-left: 20px;") Show Random Word
 
-  ul.word-list
-    each vocab in vocabs
-      li
-        span= vocab.word + " - " + vocab.translation + " (" + vocab.category + ")"
-        a(href=`/edit/${vocab._id}`) Edit
-        form(action=`/delete/${vocab._id}` method="POST")
-          button(type="submit") Delete
+  each word in vocab
+    .vocab-item
+      strong= word.word
+      p= word.meaning
+      small Example: #{word.example}
+      br
+      a(href=`/edit/${word._id}`) Edit |
+      a(href=`/delete/${word._id}`) Delete

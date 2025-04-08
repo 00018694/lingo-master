@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Random Vocabulary Word
+  if word
+    .vocab-item
+      h2= word.word
+      p Meaning: #{word.meaning}
+      p Example: #{word.example}
+  else
+    p No words available.
+  a(href='/') ← Back to Home

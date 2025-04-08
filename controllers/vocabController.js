@@ -25,3 +25,14 @@ exports.updateWord = (req, res) => {
   vocabService.update(req.params.id, { word, meaning });
   res.redirect('/');
 };
+// Show a random vocab word
+exports.randomWord = async (req, res) => {
+    try {
+      const words = await vocabService.getAllVocab();
+      const random = words[Math.floor(Math.random() * words.length)];
+      res.render('random', { word: random });
+    } catch (err) {
+      res.status(500).send('Error fetching word');
+    }
+  };
+  

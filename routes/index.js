@@ -13,4 +13,4 @@ router.get('/flashcards', async (req, res) => {
     const vocabs = await vocabService.getAll();
     res.render('flashcards', { vocabs });
   });
-  
+  router.get('/random', vocabController.randomWord);
